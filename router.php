@@ -1,6 +1,6 @@
 <?php
 
-    require_once ('app/Controllers/AppController.php');
+    require_once('app/Controllers/CelularController.php');
     require_once ('app/Controllers/MarcaController.php');
     require_once 'RouterClass.php';
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -8,17 +8,17 @@
     $r = new Router();
 
     //Muestra home, y celular especifico
-    $r->addRoute("home", "GET", "AppController", "showHome");
-    $r->addRoute("celular/:ID", "GET", "AppController", "showCelularEspecifico");
+    $r->addRoute("home", "GET", "CelularController", "showHome");
+    $r->addRoute("celular/:ID", "GET", "CelularController", "showCelularEspecifico");
 
     // Mostras todas las marcas, y los celulares de una marca
     $r->addRoute("marcas", "GET", "MarcaController", "showMarcas");
-    $r->addRoute("marcas/:ID/celulares", "GET", "MarcaController", "showCelularesMarca");
+    $r->addRoute("marcas/:ID", "GET", "MarcaController", "showCelularesMarca");
 
     // Agregar, editar, y borrar un celular
-    $r->addRoute("celular/add", "POST", "AppController", "addCelular");
-    $r->addRoute("celular/edit/:ID", "POST", "AppController", "editCelular");
-    $r->addRoute("celular/remove/:ID", "GET", "AppController", "removeCelular");
+    $r->addRoute("celular/add", "POST", "CelularController", "addCelular");
+    $r->addRoute("celular/edit/:ID", "POST", "CelularController", "editCelular");
+    $r->addRoute("celular/remove/:ID", "GET", "CelularController", "removeCelular");
 
     $r->addRoute("marca/add", "POST", "MarcaController", "addMarca");
     $r->addRoute("marca/edit/:ID", "POST", "MarcaController", "editMarca");

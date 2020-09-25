@@ -1,6 +1,6 @@
 <?php
 
-class AppModel{
+class CelularModel{
 
     private $db;
 

@@ -1,15 +1,15 @@
 <?php
-require_once ('app/Models/AppModel.php');
+require_once('app/Models/CelularModel.php');
 require_once ('app/Models/MarcaModel.php');
-require_once ('app/Views/AppView.php');
+require_once('app/Views/CelularView.php');
 
-class AppController {
+class CelularController {
     private $view;
     private $model;
 
     function __construct () {
-        $this->model = new AppModel();
-        $this->view = new AppView();
+        $this->model = new CelularModel();
+        $this->view = new CelularView();
     }
 
     function showHome () {
