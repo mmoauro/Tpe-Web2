@@ -2,23 +2,22 @@
 require_once ('././libs/smarty/Smarty.class.php');
 class CelularView {
 
-    function __construct () {
+    private $smarty;
 
+    function __construct () {
+        $this->smarty = new Smarty();
+        $this->smarty->assign('base_url', BASE_URL);
     }
 
     function showHome ($celulares, $marcas) {
-        $smarty = new Smarty();
-        $smarty->assign('celulares', $celulares);
-        $smarty->assign('marcas', $marcas);
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->display('templates/home.tpl');
+        $this->smarty->assign('celulares', $celulares);
+        $this->smarty->assign('marcas', $marcas);
+        $this->smarty->display('templates/home.tpl');
     }
 
     function showCelular($celular){
-        $smarty = new Smarty();
-        $smarty->assign('celular', $celular);
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->display('templates/celular.tpl');
+        $this->smarty->assign('celular', $celular);
+        $this->smarty->display('templates/celular.tpl');
     }
 
     function redirectHome () {

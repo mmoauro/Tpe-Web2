@@ -2,24 +2,23 @@
 require_once ('././libs/smarty/Smarty.class.php');
 class MarcaView {
 
-    function __construct () {
+    private $smarty;
 
+    function __construct () {
+        $this->smarty = new Smarty();
+        $this->smarty->assign('base_url', BASE_URL);
     }
 
     function showMarcas ($marcas) {
-        $smarty = new Smarty();
-        $smarty->assign('marcas', $marcas);
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->display('templates/marcas.tpl');
+        $this->smarty->assign('marcas', $marcas);
+        $this->smarty->display('templates/marcas.tpl');
     }
 
     function showCelularesMarca ($celulares) {
         // Es lo mismo que el showHome. Solo que vienen todos los celulares de la misma marca
-        $smarty = new Smarty();
-        $smarty->assign('celulares', $celulares);
-        $smarty->assign('marcas', null);
-        $smarty->assign('base_url', BASE_URL);
-        $smarty->display('templates/home.tpl');
+        $this->smarty->assign('celulares', $celulares);
+        $this->smarty->assign('marcas', null);
+        $this->smarty->display('templates/home.tpl');
     }
 
     function redirectMarcas () {
