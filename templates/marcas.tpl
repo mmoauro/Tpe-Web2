@@ -23,7 +23,7 @@
         </tbody>
     </table>
     <h1>Agregar Marca</h1>
-    <form action="{$base_url}marca/add" method="post">
+    <form action="marca/add" method="post">
         <input type="text" name="nombre" placeholder="Nombre">
         <input type="text" name="origen" placeholder="Origen">
         <button>Agregar</button>

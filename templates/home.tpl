@@ -18,10 +18,10 @@
             {foreach from=$celulares item=celular}
                 <tr>
                     <td>{$celular->modelo}</td>
-                    <td><a href="{$base_url}marcas/{$celular->id_marca}">{$celular->marca}</a></td>
+                    <td><a href="marcas/{$celular->id_marca}">{$celular->marca}</a></td>
                     <td>{$celular->especificaciones}</td>
-                    <td><a class="btn btn-success" href="{$base_url}celular/{$celular->id}"><i class="fas fa-external-link-square-alt"></i></a></td>
-                    <td><a class="btn btn-danger" href="{$base_url}celular/remove/{$celular->id}"><i class="far fa-trash-alt "></i></a></td>
+                    <td><a class="btn btn-success" href="celular/{$celular->id}"><i class="fas fa-external-link-square-alt"></i></a></td>
+                    <td><a class="btn btn-danger" href="celular/remove/{$celular->id}"><i class="far fa-trash-alt "></i></a></td>
                 </tr>
             {/foreach}
         </tbody>
@@ -44,7 +44,7 @@
         </form>
     {else}
         <h1>Editar marca</h1>
-        <form action="{$base_url}marca/edit/{$celular->id_marca}" method="post">
+        <form action="marca/edit/{$celular->id_marca}" method="post">
             <input type="text" name="nombre" placeholder="Nombre">
             <input type="text" name="origen" placeholder="Origen">
             <button>Editar</button>
