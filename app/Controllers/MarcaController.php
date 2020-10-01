@@ -19,7 +19,8 @@ class MarcaController {
     function showCelularesMarca ($params = null) {
         $id = $params[':ID'];
         $celulares = $this->model->getCelularesMarca($id);
-        $this->view->showCelularesMarca($celulares);
+        $nombreMarca = $this->model->getNombreMarca($id);
+        $this->view->showCelularesMarca($celulares, $nombreMarca);
     }
 
     function addMarca () {

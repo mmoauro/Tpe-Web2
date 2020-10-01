@@ -4,12 +4,13 @@
 </head>
 <body>
     {include file="navbar.tpl"}
-    <table class="table table-bordered">
+    <table class="table table-bordered container">
         <thead>
         <tr>
             <th>Nombre</th>
             <th>Origen</th>
             <th>Celulares</th>
+            <th>Eliminar</th>
         </tr>
         </thead>
         <tbody>
@@ -18,15 +19,25 @@
                 <td>{$marca->nombre}</td>
                 <td>{$marca->origen}</td>
                 <td><a class="btn btn-secondary" href="marcas/{$marca->id}"><i class="far fa-mobile "></i></a></td>
+                <td><a class="btn btn-danger" href="marca/remove/{$marca->id}"><i class="far fa-trash "></i></a></td>
             </tr>
         {/foreach}
         </tbody>
     </table>
-    <h1>Agregar Marca</h1>
-    <form action="marca/add" method="post">
-        <input type="text" name="nombre" placeholder="Nombre">
-        <input type="text" name="origen" placeholder="Origen">
-        <button>Agregar</button>
+
+    <!-- Si el usuario es administrador...-->
+    <h3 class="container">Agregar Marca</h3>
+
+    <form class="container" action="marca/add" method="post">
+        <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+        </div>
+        <div class="form-group">
+            <label>Origen</label>
+            <input type="text" class="form-control" name="origen" placeholder="Origen" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
     </form>
 </body>
 </html>

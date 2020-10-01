@@ -8,12 +8,13 @@
     $r = new Router();
 
     //Muestra home, y celular especifico
-    $r->addRoute("home", "GET", "CelularController", "showHome");
+    $r->addRoute("", "GET", "CelularController", "showHome");
     $r->addRoute("celular/:ID", "GET", "CelularController", "showCelularEspecifico");
 
     // Mostras todas las marcas, y los celulares de una marca
     $r->addRoute("marcas", "GET", "MarcaController", "showMarcas");
     $r->addRoute("marcas/:ID", "GET", "MarcaController", "showCelularesMarca");
+    // Es mejor ir a la marca por el id o por el nombre de la marca?
 
     // Agregar, editar, y borrar un celular
     $r->addRoute("celular/add", "POST", "CelularController", "addCelular");

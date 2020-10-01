@@ -19,6 +19,11 @@ class MarcaModel{
         $query->execute(array($id));
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    function getNombreMarca ($id) {
+        $query = $this->db->prepare("SELECT nombre FROM marcas WHERE id = ?");
+        $query->execute(array($id));
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
 
     function addMarca($nombre, $origen){
         $query = $this->db->prepare("INSERT INTO marcas(nombre, origen) VALUES (?,?)");
