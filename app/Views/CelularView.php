@@ -4,9 +4,11 @@ class CelularView {
 
     private $smarty;
 
-    function __construct () {
+    function __construct ($logged, $admin) {
         $this->smarty = new Smarty();
         $this->smarty->assign('base_url', BASE_URL);
+        $this->smarty->assign('logged', $logged);
+        $this->smarty->assign('isAdmin', $admin);
     }
 
     function showHome ($celulares, $marcas) {

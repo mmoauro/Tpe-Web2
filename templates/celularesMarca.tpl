@@ -8,9 +8,12 @@
     {include file="tableCelulares.tpl"}
 
     <!-- Si el usuario es administrador.... -->
-    <h3 class="container">Editar marca</h3>
 
-    <form class="container" action="marca/edit/{$celular->id_marca}" method="post">
+
+    {if $isAdmin eq true}
+        <h3 class="container">Editar marca</h3>
+        
+        <form class="container" action="marca/edit/{$celular->id_marca}" method="post">
         <div class="form-group">
             <label>Nombre</label>
             <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
@@ -21,6 +24,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Editar</button>
     </form>
+    {/if}
 
 </body>
 </html>

@@ -2,14 +2,19 @@
 require_once('app/Models/CelularModel.php');
 require_once ('app/Models/MarcaModel.php');
 require_once('app/Views/CelularView.php');
+require_once ('app/Controllers/AuthController.php');
 
 class CelularController {
     private $view;
     private $model;
+    private $auth;
 
     function __construct () {
         $this->model = new CelularModel();
-        $this->view = new CelularView();
+        $this->auth = new AuthController();
+        $logged = $this->auth->verifyUserIsLogged();
+        $admin = $this->auth->verifyUserIsAdmin();
+        $this->view= new CelularView($logged, $admin);
     }
 
     function showHome () {
@@ -42,7 +47,9 @@ class CelularController {
 
     function removeCelular ($params = null) {
         $id = $params[':ID'];
-        $this->model->removeCelular($id);
+        if ($this->auth->verifyUserIsAdmin()) {
+            $this->model->removeCelular($id);
+        }
         $this->view->redirectHome();
     }
 

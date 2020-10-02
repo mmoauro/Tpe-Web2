@@ -10,4 +10,11 @@
             </li>
         </ul>
     </div>
+    {if $logged eq false}
+        <a href="login"><button class="btn btn-outline-success my-2 my-sm-0" type="button">Ingresar</button></a>
+        <a href="signup"><button class="btn btn-outline-primary my-2 my-sm-0" type="button">Registrarse</button></a>
+    {else}
+        <a href="logout"><button class="btn btn-outline-danger my-2 my-sm-0" type="button">Logout</button></a>
+    {/if}
+
 </nav>

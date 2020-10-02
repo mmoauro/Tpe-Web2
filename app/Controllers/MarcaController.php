@@ -5,10 +5,14 @@ require_once ('app//Views/MarcaView.php');
 class MarcaController {
     private $model;
     private $view;
+    private $auth;
 
     function __construct() {
         $this->model= new MarcaModel();
-        $this->view = new MarcaView();
+        $this->auth = new AuthController();
+        $logged = $this->auth->verifyUserIsLogged();
+        $admin = $this->auth->verifyUserIsAdmin();
+        $this->view = new MarcaView($logged, $admin);
     }
 
     function showMarcas () {
@@ -44,7 +48,9 @@ class MarcaController {
 
     function removeMarca ($params = null) {
         $id = $params[':ID'];
-        $this->model->removeMarca($id);
+        if ($this->auth->verifyUserIsAdmin()) {
+            $this->model->removeMarca($id);
+        }
         $this->view->redirectMarcas();
     }
 
