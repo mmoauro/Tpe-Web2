@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 18, 2020 at 09:18 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.9
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 02-10-2020 a las 15:06:20
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,15 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_celulares`
+-- Base de datos: `db_celulares`
 --
-CREATE DATABASE IF NOT EXISTS `db_celulares` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `db_celulares`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `celulares`
+-- Estructura de tabla para la tabla `celulares`
 --
 
 CREATE TABLE `celulares` (
@@ -37,7 +36,7 @@ CREATE TABLE `celulares` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `celulares`
+-- Volcado de datos para la tabla `celulares`
 --
 
 INSERT INTO `celulares` (`id`, `modelo`, `especificaciones`, `id_marca`) VALUES
@@ -46,7 +45,7 @@ INSERT INTO `celulares` (`id`, `modelo`, `especificaciones`, `id_marca`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `marcas`
+-- Estructura de tabla para la tabla `marcas`
 --
 
 CREATE TABLE `marcas` (
@@ -56,51 +55,82 @@ CREATE TABLE `marcas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `marcas`
+-- Volcado de datos para la tabla `marcas`
 --
 
 INSERT INTO `marcas` (`id`, `nombre`, `origen`) VALUES
 (1, 'Xiaomi', 'China');
 
+-- --------------------------------------------------------
+
 --
--- Indexes for dumped tables
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `email`, `password`) VALUES
+(1, 'usuario@hotmail.com', '$2y$12$5wkr8bWixjqtxbm1OOMX4e0fRpO8//kgXo7UlL/AWY41hT8Vbgtli');
+
+--
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `celulares`
+-- Indices de la tabla `celulares`
 --
 ALTER TABLE `celulares`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_marca` (`id_marca`);
 
 --
--- Indexes for table `marcas`
+-- Indices de la tabla `marcas`
 --
 ALTER TABLE `marcas`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `celulares`
+-- AUTO_INCREMENT de la tabla `celulares`
 --
 ALTER TABLE `celulares`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `marcas`
+-- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `celulares`
+-- Filtros para la tabla `celulares`
 --
 ALTER TABLE `celulares`
   ADD CONSTRAINT `celulares_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marcas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
