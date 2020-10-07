@@ -3,7 +3,7 @@
     require_once ('app/Controllers/CelularController.php');
     require_once ('app/Controllers/MarcaController.php');
     require_once ('app/Controllers/UserController.php');
-    require_once ('app/Controllers/AuthController.php');
+    require_once('app/Controllers/AuthHelper.php');
     require_once 'RouterClass.php';
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
     define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
@@ -15,7 +15,7 @@
     $r->addRoute("signup", "GET", "UserController", "showSignUp");
     $r->addRoute("verifyuser", "POST", "UserController", "verifyUser");
     $r->addRoute("registry", "POST", "UserController", "registryUser");
-    $r->addRoute("logout", "GET", "AuthController", "logout");
+    $r->addRoute("logout", "GET", "AuthHelper", "logout");
 
 
     //Muestra home, y celular especifico

@@ -9,7 +9,7 @@ class MarcaController {
 
     function __construct() {
         $this->model= new MarcaModel();
-        $this->auth = new AuthController();
+        $this->auth = new AuthHelper();
         $logged = $this->auth->verifyUserIsLogged();
         $admin = $this->auth->verifyUserIsAdmin();
         $this->view = new MarcaView($logged, $admin);

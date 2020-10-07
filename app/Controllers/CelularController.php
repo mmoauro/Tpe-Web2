@@ -2,7 +2,7 @@
 require_once('app/Models/CelularModel.php');
 require_once ('app/Models/MarcaModel.php');
 require_once('app/Views/CelularView.php');
-require_once ('app/Controllers/AuthController.php');
+require_once('app/Controllers/AuthHelper.php');
 
 class CelularController {
     private $view;
@@ -11,9 +11,10 @@ class CelularController {
 
     function __construct () {
         $this->model = new CelularModel();
-        $this->auth = new AuthController();
+        $this->auth = new AuthHelper();
         $logged = $this->auth->verifyUserIsLogged();
         $admin = $this->auth->verifyUserIsAdmin();
+        // logged y admin se puede simplificar en un entero: -1 si no esta logueado, 0 si esta logueado, y 1 si es admin.
         $this->view= new CelularView($logged, $admin);
     }
 

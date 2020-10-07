@@ -1,7 +1,7 @@
 <?php
 require_once ('app/Views/CelularView.php');
 
-class AuthController {
+class AuthHelper {
 
     function __construct() {
         session_start();

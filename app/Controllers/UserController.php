@@ -2,7 +2,7 @@
 
 require_once ('app/Models/UserModel.php');
 require_once ('app/Views/UserView.php');
-require_once ('app/Controllers/AuthController.php');
+require_once('app/Controllers/AuthHelper.php');
 
 class UserController{
     private $model;
@@ -10,7 +10,7 @@ class UserController{
     
     function __construct(){
         $this->model= new UserModel();
-        $auth = new AuthController();
+        $auth = new AuthHelper();
         $logged = $auth->verifyUserIsLogged();
         $this->view = new UserView($logged);
         if ($logged) {
@@ -42,13 +42,13 @@ class UserController{
                 $this->view->redirectHome();
             }
             else{
-                $this->view->redirectLogin(); // falta implementar en view un mensaje.
+                $this->view->showError("Usuario o contrasena incorrecto.", 'login');
             }
         }
     }
 
     function registryUser(){
-        if(isset($_POST["email"]) and isset($_POST["password"]) and isset($_POST["cPassword"])){
+        if(isset($_POST["email"])){
 
             $email= $_POST["email"];
             if (!$this->model->verifyEmailIsTaken($email)) {
@@ -62,7 +62,7 @@ class UserController{
                 $this->view->redirectLogin();
             }
             else {
-                $this->view->redirectLogin(); // falta implementar en view un mensaje.
+                $this->view->showError("El email ingresado ya esta en uso.", 'signup');
             }
             
         }
