@@ -19,7 +19,8 @@
 
 
     //Muestra home, y celular especifico
-    $r->addRoute("", "GET", "CelularController", "showHome");
+    //$r->addRoute("", "GET", "CelularController", "showHome"); ERROR en home y marcas porque la url está vacía
+    $r->setDefaultRoute("CelularController", "showHome"); //Reemplaza la url de arriba
     $r->addRoute("celular/:ID", "GET", "CelularController", "showCelularEspecifico");
 
     // Mostras todas las marcas, y los celulares de una marca
