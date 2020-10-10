@@ -6,7 +6,6 @@
     require_once('app/Controllers/AuthHelper.php');
     require_once 'RouterClass.php';
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
-    define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
 
     $r = new Router();
 
@@ -19,8 +18,8 @@
 
 
     //Muestra home, y celular especifico
-    //$r->addRoute("", "GET", "CelularController", "showHome"); ERROR en home y marcas porque la url está vacía
-    $r->setDefaultRoute("CelularController", "showHome"); //Reemplaza la url de arriba
+    $r->addRoute("", "GET", "CelularController", "showHome"); //ERROR en home y marcas porque la url está vacía
+    //$r->setDefaultRoute("CelularController", "showHome"); //Reemplaza la url de arriba
     $r->addRoute("celular/:ID", "GET", "CelularController", "showCelularEspecifico");
 
     // Mostras todas las marcas, y los celulares de una marca

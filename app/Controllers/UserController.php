@@ -51,7 +51,7 @@ class UserController{
         if(isset($_POST["email"])){
 
             $email= $_POST["email"];
-            if (!$this->model->verifyEmailIsTaken($email)) {
+            if (!$this->model->getUsuario($email)) {
                 $password= $_POST["password"];
 
                 $password_hash = password_hash($password, PASSWORD_DEFAULT);

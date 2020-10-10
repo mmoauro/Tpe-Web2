@@ -18,10 +18,4 @@
             $query->execute(array($email, $password_hash));
         }
 
-        function verifyEmailIsTaken ($email) {
-            $query = $this->db->prepare("SELECT * FROM usuarios WHERE email = ?");
-            $query->execute(array($email));
-            return $query->fetch(PDO::FETCH_OBJ);
-        }
-
     }
