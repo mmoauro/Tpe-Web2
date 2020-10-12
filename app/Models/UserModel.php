@@ -14,8 +14,8 @@
         }
 
         function insertUser($email, $password_hash){
-            $query = $this->db->prepare("INSERT INTO usuarios(email, password) VALUES(?,?)");
-            $query->execute(array($email, $password_hash));
+            $query = $this->db->prepare("INSERT INTO usuarios (email, password, admin) VALUES(?,?,?)");
+            $query->execute(array($email, $password_hash, 0));
         }
 
     }
