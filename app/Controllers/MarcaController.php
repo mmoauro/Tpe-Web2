@@ -10,9 +10,8 @@ class MarcaController {
     function __construct() {
         $this->model= new MarcaModel();
         $this->auth = new AuthHelper();
-        $logged = $this->auth->verifyUserIsLogged();
-        $admin = $this->auth->verifyUserIsAdmin();
-        $this->view = new MarcaView($logged, $admin);
+        $status = $this->auth->getUserStatus();
+        $this->view = new MarcaView($status);
     }
 
     function showMarcas () {
@@ -48,7 +47,7 @@ class MarcaController {
 
     function removeMarca ($params = null) {
         $id = $params[':ID'];
-        if ($this->auth->verifyUserIsAdmin()) {
+        if ($this->auth->getUserStatus() == 1) {
             $this->model->removeMarca($id);
         }
         $this->view->redirectMarcas();

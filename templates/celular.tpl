@@ -9,7 +9,7 @@
         <ul class="list-group">
             <li class="list-group-item">Marca: <a href="marcas/{$celular->id_marca}">{$celular->marca}</a></li>
             <li class="list-group-item">Especificaciones: {$celular->especificaciones}</li>
-            {if $isAdmin eq true}
+            {if $status eq 1}
                 <li class="list-group-item"><a class="btn btn-danger" href="celular/remove/{$celular->id}"><i class="far fa-trash-alt "></i></a></li>
             {/if}
         </ul>
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Si el usuario es administrador.... -->
-    {if $isAdmin eq true}
+    {if $status eq 1}
         
         <h3 class="container">Editar celular</h3>
         

@@ -11,9 +11,9 @@ class UserController{
     function __construct(){
         $this->model= new UserModel();
         $auth = new AuthHelper();
-        $logged = $auth->verifyUserIsLogged();
-        $this->view = new UserView($logged);
-        if ($logged) {
+        $status = $auth->getUserStatus();
+        $this->view = new UserView($status);
+        if ($status >= 0) {
             $this->view->redirectHome();
         }
     }

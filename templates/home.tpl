@@ -7,7 +7,7 @@
     {include file="tableCelulares.tpl"}
 
     <!-- Si el usuario es administrador.... -->
-    {if $isAdmin eq true}
+    {if $status eq 1}
 
         <h3 class="container">Agregar celular nuevo</h3>
 

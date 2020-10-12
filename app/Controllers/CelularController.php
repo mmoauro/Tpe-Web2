@@ -12,10 +12,9 @@ class CelularController {
     function __construct () {
         $this->model = new CelularModel();
         $this->auth = new AuthHelper();
-        $logged = $this->auth->verifyUserIsLogged();
-        $admin = $this->auth->verifyUserIsAdmin();
+        $status = $this->auth->getUserStatus();
         // logged y admin se puede simplificar en un entero: -1 si no esta logueado, 0 si esta logueado, y 1 si es admin.
-        $this->view= new CelularView($logged, $admin);
+        $this->view= new CelularView($status);
     }
 
     function showHome () {
@@ -48,7 +47,7 @@ class CelularController {
 
     function removeCelular ($params = null) {
         $id = $params[':ID'];
-        if ($this->auth->verifyUserIsAdmin()) {
+        if ($this->auth->getUserStatus() == 1) {
             $this->model->removeCelular($id);
         }
         $this->view->redirectHome();

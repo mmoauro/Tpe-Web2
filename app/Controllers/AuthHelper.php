@@ -7,23 +7,20 @@ class AuthHelper {
         session_start();
     }
 
-    function verifyUserIsAdmin () {
-        if (isset ($_SESSION['LOGGED']) && isset($_SESSION['ADMIN'])) {
-            return $_SESSION['LOGGED'] && $_SESSION['ADMIN'];
+    function getUserStatus () {
+        //devuelve 1 si es admin, 0 si esta loggeado, y -1 si no esta loggeado.
+        if (isset ($_SESSION['LOGGED']) || isset($_SESSION['ADMIN'])){
+            if ($_SESSION['LOGGED'] && $_SESSION['ADMIN']) {
+                return 1;
+            }
+            return 0;
         }
-        return false;
-    }
-
-    function verifyUserIsLogged () {
-        if (isset ($_SESSION['LOGGED'])) {
-            return $_SESSION['LOGGED'];
-        }
-        return false;
+        return -1;
     }
 
     function logout () {
         session_destroy();
-        $view = new CelularView(false, false);
+        $view = new CelularView(-1);
         $view->redirectHome();
     }
 }

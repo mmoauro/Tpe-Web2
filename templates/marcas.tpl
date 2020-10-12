@@ -10,7 +10,7 @@
             <th>Nombre</th>
             <th>Origen</th>
             <th>Celulares</th>
-            {if $isAdmin eq true}
+            {if $status eq 1}
                 <th>Eliminar</th>
             {/if}
         </tr>
@@ -21,7 +21,7 @@
                 <td>{$marca->nombre}</td>
                 <td>{$marca->origen}</td>
                 <td><a class="btn btn-secondary" href="marcas/{$marca->id}"><i class="far fa-mobile "></i></a></td>
-                {if $isAdmin eq true}
+                {if $status eq 1}
                     <td><a class="btn btn-danger" href="marca/remove/{$marca->id}"><i class="far fa-trash "></i></a></td>
                 {/if}
             </tr>
@@ -30,7 +30,7 @@
     </table>
 
     <!-- Si el usuario es administrador...-->
-    {if $isAdmin eq true}
+    {if $status eq 1}
         
         <h3 class="container">Agregar Marca</h3>
 

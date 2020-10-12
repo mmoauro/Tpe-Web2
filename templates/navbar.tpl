@@ -10,7 +10,7 @@
             </li>
         </ul>
     </div>
-    {if $logged eq false}
+    {if $status lte -1}
         <a href="login"><button class="btn btn-outline-success my-2 my-sm-0" type="button">Ingresar</button></a>
         <a href="signup"><button class="btn btn-outline-primary my-2 my-sm-0" type="button">Registrarse</button></a>
     {else}

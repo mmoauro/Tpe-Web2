@@ -10,7 +10,7 @@
     <!-- Si el usuario es administrador.... -->
 
 
-    {if $isAdmin eq true}
+    {if $status eq 1}
         <h3 class="container">Editar marca</h3>
         
         <form class="container" action="marca/edit/{$idMarca}" method="post">
