@@ -22,6 +22,7 @@ class AuthHelper {
         session_destroy();
         $view = new CelularView(-1);
         $view->redirectHome();
+        die();
     }
 }
 
