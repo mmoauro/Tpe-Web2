@@ -18,4 +18,26 @@
             $query->execute(array($email, $password_hash, 0));
         }
 
+        function getUsers () {
+            $query = $this->db->prepare("SELECT * FROM usuarios");
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        function getUsuarioById($id){
+            $query = $this->db->prepare("SELECT * FROM usuarios WHERE id = ?");
+            $query->execute(array($id));
+            return $query->fetch(PDO::FETCH_OBJ);
+        }
+
+        function removeUser($id){
+            $query = $this->db->prepare("DELETE FROM usuarios WHERE id = ?");
+            $query->execute(array($id));
+        }
+
+        function updateUserRole ($id, $role){
+            $query = $this->db->prepare("UPDATE usuarios SET admin = ? WHERE id = ?");
+            $query->execute(array($role, $id));
+        }
+
     }

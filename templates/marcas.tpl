@@ -20,7 +20,7 @@
             <tr>
                 <td>{$marca->nombre}</td>
                 <td>{$marca->origen}</td>
-                <td><a class="btn btn-secondary" href="marcas/{$marca->id}"><i class="far fa-mobile "></i></a></td>
+                <td><a class="btn btn-secondary" href="marcas/{$marca->id}/0"><i class="far fa-mobile "></i></a></td>
                 {if $status eq 1}
                     <td><a class="btn btn-danger" href="marca/remove/{$marca->id}"><i class="far fa-trash "></i></a></td>
                 {/if}

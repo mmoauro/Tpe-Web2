@@ -18,13 +18,14 @@
 
 
     //Muestra home, y celular especifico
-    $r->addRoute("", "GET", "CelularController", "showHome"); //ERROR en home y marcas porque la url está vacía
-    //$r->setDefaultRoute("CelularController", "showHome"); //Reemplaza la url de arriba
+    $r->setDefaultRoute("CelularController", "showHome");
+    $r->addRoute("celulares/:OFFSET", "GET", "CelularController", "showHome");
     $r->addRoute("celular/:ID", "GET", "CelularController", "showCelularEspecifico");
+    $r->addRoute("celulares/:OFFSET", "POST", "CelularController", "showCelularesLike");
 
     // Mostras todas las marcas, y los celulares de una marca
     $r->addRoute("marcas", "GET", "MarcaController", "showMarcas");
-    $r->addRoute("marcas/:ID", "GET", "MarcaController", "showCelularesMarca");
+    $r->addRoute("marcas/:ID/:OFFSET", "GET", "MarcaController", "showCelularesMarca");
     // Es mejor ir a la marca por el id o por el nombre de la marca?
 
     // Agregar, editar, y borrar un celular
@@ -35,6 +36,10 @@
     $r->addRoute("marca/add", "POST", "MarcaController", "addMarca");
     $r->addRoute("marca/edit/:ID", "POST", "MarcaController", "editMarca");
     $r->addRoute("marca/remove/:ID", "GET", "MarcaController", "removeMarca");
+
+    $r->addRoute("users", "GET", "UserController", "showUsers");
+    $r->addRoute("user/remove/:ID", "GET", "UserController", "removeUser");
+    $r->addRoute("user/edit/:ID", "POST", "UserController", "editUser");
 
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
 ?>

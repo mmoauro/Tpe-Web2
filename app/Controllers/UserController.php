@@ -2,27 +2,32 @@
 
 require_once ('app/Models/UserModel.php');
 require_once ('app/Views/UserView.php');
-require_once('app/Controllers/AuthHelper.php');
+require_once ('app/Controllers/AuthHelper.php');
 
 class UserController{
     private $model;
     private $view;
+    private $auth;
     
     function __construct(){
         $this->model= new UserModel();
-        $auth = new AuthHelper();
-        $status = $auth->getUserStatus();
+        $this->auth = new AuthHelper();
+        $status = $this->auth->getUserStatus();
         $this->view = new UserView($status);
-        if ($status >= 0) {
-            $this->view->redirectHome();
-        }
     }
 
     function showLogin(){
-        $this->view->showLogin();
+        if ($this->auth->getUserStatus() >= 0)
+            $this->view->redirectHome();
+        else
+            $this->view->showLogin();
+        
     }
 
     function showSignUp () {
+        if ($this->auth->getUserStatus() >= 0)
+            $this->view->redirectHome();
+        else
         $this->view->showSignUp();
     }
 
@@ -39,6 +44,7 @@ class UserController{
                 session_start();
                 $_SESSION["ADMIN"]= $usuario->admin;
                 $_SESSION["LOGGED"]= true;
+                $_SESSION['ID_USER'] = $usuario->id;
                 $this->view->redirectHome();
             }
             else{
@@ -59,6 +65,8 @@ class UserController{
                 session_start();
                 $_SESSION["ADMIN"]= false;
                 $_SESSION["LOGGED"]= true;
+                $usuario = $this->model->getUsuario($email);
+                $_SESSION['ID_USER'] = $usuario->id;
                 $this->view->redirectLogin();
             }
             else {
@@ -68,5 +76,48 @@ class UserController{
         }
     }
 
+    function showUsers () {
+        if ($this->auth->getUserStatus() == 1) {
+            $users = $this->model->getUsers();
+            $this->view->showUsers($users);
+        }
+        else
+            $this->view->redirectHome();
+    }
 
+    function removeUser($params = null){
+        if ($this->auth->getUserStatus() == 1) {
+            $id= $params[":ID"];
+
+            $user= $this->model->getUsuarioById($id);
+
+            if ($user){
+                $this->model->removeUser($id);
+                $this->view->redirectUsers();
+            }
+            else{
+                $this->view->showError("El usuario con id = $id no existe", "users");
+            }
+        }
+        else
+            $this->view->redirectHome();
+    }
+
+    function editUser($params = null){
+        if ($this->auth->getUserStatus() == 1) {
+            $id= $params[":ID"];
+            
+            if (isset($_POST['role'])) {
+                $role = $_POST['role']; // value 1 para admin, 0 para user.
+                $user = $this->model->getUsuarioById($id);
+
+                if ($user){
+                    $this->model->updateUserRole($id, $role);
+                    $this->view->redirectUsers();
+                }
+            }
+        }
+        else
+            $this->view->redirectHome();
+    }
 }

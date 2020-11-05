@@ -4,6 +4,15 @@
 </head>
 <body>
     {include file="navbar.tpl"}
+    {if $status gte 0}
+        
+        <form action="{$base_url}celulares/{$offset}" method="POST" class="container">
+            <div class="form-group">
+                <input type="text" name="busqueda_input" class="form-control" placeholder="Ej: Xiaomi">
+            </div>
+            <button class="btn btn-primary">Buscar</button>
+        </form>
+    {/if}
     {include file="tableCelulares.tpl"}
 
     <!-- Si el usuario es administrador.... -->

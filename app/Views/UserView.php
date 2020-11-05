@@ -25,8 +25,13 @@ class UserView {
         $this->smarty->display('templates/error.tpl');
     }
 
+    function showUsers ($users) {
+        $this->smarty->assign('users', $users);
+        $this->smarty->display('templates/users.tpl');
+    }
+
     function redirectHome () {
-        header("location: ".BASE_URL);
+        header("location: ".BASE_URL."celulares/0");
     }
 
     function redirectLogin () {
@@ -35,6 +40,10 @@ class UserView {
 
     function redirectSignUp () {
         header ("Location: ".BASE_URL."signup");
+    }
+
+    function redirectUsers(){
+        header("location: ".BASE_URL."users");
     }
 }
 

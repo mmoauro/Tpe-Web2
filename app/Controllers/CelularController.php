@@ -17,12 +17,15 @@ class CelularController {
         $this->view= new CelularView($status);
     }
 
-    function showHome () {
-        // Hago un model de marca porque necesito las marcas para el formulario
-        $modelMarca = new MarcaModel();
-        $marcas = $modelMarca->getMarcas();
-        $celulares = $this->model->getCelulares();
-        $this->view->showHome($celulares, $marcas);
+    function showHome ($params = null) {
+        $offset = 0;
+        if (isset($params[':OFFSET']) && is_numeric($params[':OFFSET']))
+            $offset = $params[':OFFSET'];
+
+        $marcas = $this->getMarcas();
+        $celulares = $this->model->getCelulares($offset * 5);
+        $max = count($celulares) < 5; // Variable para saber si pongo el link de siguiente pagina
+        $this->view->showHome($celulares, $marcas, $offset, $max);
     }
 
     function addCelular(){
@@ -56,7 +59,27 @@ class CelularController {
     function showCelularEspecifico ($params = null) {
         $id = $params[':ID'];
         $celular = $this->model->getCelular($id);
-        $this->view->showCelular($celular);
+        $this->view->showCelular($celular, $this->auth->getUserId()); // Le paso el id del usuario porque necesito pasarselo a vue.
+    }
+
+    function showCelularesLike($params = null){
+        if(isset($_POST["busqueda_input"])){
+            $offset = 0;
+            if (isset($params[':OFFSET']) && is_numeric($params[':OFFSET']))
+                $offset = $params[':OFFSET'];
+
+            $busqueda = $_POST["busqueda_input"]; // Input del filtrado.
+
+            $celulares= $this->model->celularLike($busqueda, $offset * 5);
+            $marcas = $this->getMarcas();
+            $max = count($celulares) < 5;
+            $this->view->showHome($celulares, $marcas, $offset, $max);
+        }
+    }
+
+    function getMarcas () {
+        $modelMarca = new MarcaModel(); // Para mostrar las marcas en el formulario
+        return$modelMarca->getMarcas();
     }
 }
 

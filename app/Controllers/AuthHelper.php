@@ -18,6 +18,13 @@ class AuthHelper {
         return -1;
     }
 
+    function getUserId () {
+        if (isset($_SESSION['ID_USER'])) {
+            return $_SESSION['ID_USER'];
+        }
+        return null;
+    }
+
     function logout () {
         session_destroy();
         $view = new CelularView(-1);

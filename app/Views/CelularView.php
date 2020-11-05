@@ -10,19 +10,23 @@ class CelularView {
         $this->smarty->assign('status', $status);
     }
 
-    function showHome ($celulares, $marcas) {
+    function showHome ($celulares, $marcas, $offset, $max) {
         $this->smarty->assign('celulares', $celulares);
         $this->smarty->assign('marcas', $marcas);
+        $this->smarty->assign('offset', $offset);
+        $this->smarty->assign('max', $max);
+        $this->smarty->assign('url', "celulares");
         $this->smarty->display('templates/home.tpl');
     }
 
-    function showCelular($celular){
+    function showCelular($celular, $idUser){
         $this->smarty->assign('celular', $celular);
+        $this->smarty->assign('idUser', $idUser); // Le paso el id del usuario para usarlo en vue.
         $this->smarty->display('templates/celular.tpl');
     }
 
     function redirectHome () {
-        header ('Location: '.BASE_URL);
+        header ('Location: '.BASE_URL.'celulares/0');
     }
 
     function redirectCelular ($id) {

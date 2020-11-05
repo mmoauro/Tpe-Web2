@@ -21,9 +21,13 @@ class MarcaController {
 
     function showCelularesMarca ($params = null) {
         $id = $params[':ID']; // id de la marca
-        $celulares = $this->model->getCelularesMarca($id);
+        $offset = 0;
+        if (isset($params[':OFFSET']) && is_numeric($params[':OFFSET']))
+            $offset = $params[':OFFSET'];
+        $celulares = $this->model->getCelularesMarca($id, $offset * 5);
         $nombreMarca = $this->model->getNombreMarca($id);
-        $this->view->showCelularesMarca($celulares, $nombreMarca, $id);
+        $max = count($celulares) < 5;
+        $this->view->showCelularesMarca($celulares, $nombreMarca, $id, $offset, $max);
     }
 
     function addMarca () {

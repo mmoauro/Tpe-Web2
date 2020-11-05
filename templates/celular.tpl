@@ -1,6 +1,7 @@
 <html>
 <head>
     {include file="head.tpl"}
+    <script src="app/js/comments.js"></script>
 </head>
 <body>
     {include file="navbar.tpl"}
@@ -13,8 +14,11 @@
                 <li class="list-group-item"><a class="btn btn-danger" href="celular/remove/{$celular->id}"><i class="far fa-trash-alt "></i></a></li>
             {/if}
         </ul>
-
-    </div>
+        <!-- Inputs para llevarme informacion a vue -->
+        <input type="hidden" value="{$celular->id}" id="idCelular">
+        <input type="hidden" value="{$idUser}" id="idUser">
+        <input type="hidden" value="{$status}" id="userStatus">
+        {include file="vue/comments.vue"}
 
     <!-- Si el usuario es administrador.... -->
     {if $status eq 1}

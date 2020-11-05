@@ -8,8 +8,8 @@ class CelularModel{
         $this->db= new PDO('mysql:host=localhost;'.'dbname=db_celulares;charset=utf8', 'root', '');
     }
         
-    function getCelulares() {
-        $query = $this->db->prepare("SELECT marcas.nombre AS marca, celulares.* FROM celulares JOIN marcas ON celulares.id_marca = marcas.id");
+    function getCelulares($offset) {
+        $query = $this->db->prepare("SELECT marcas.nombre AS marca, celulares.* FROM celulares JOIN marcas ON celulares.id_marca = marcas.id LIMIT 5 OFFSET $offset");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
@@ -33,5 +33,11 @@ class CelularModel{
     function editCelular($modelo, $especificaciones, $id){
         $query = $this->db->prepare("UPDATE celulares SET modelo = ?, especificaciones = ? WHERE id = ?");
         $query->execute(array($modelo, $especificaciones, $id));
+    }
+
+    function celularLike($busqueda, $offset){
+        $query = $this->db->prepare("SELECT marcas.nombre AS marca, celulares.* FROM celulares JOIN marcas ON celulares.id_marca = marcas.id WHERE celulares.especificaciones LIKE '%$busqueda%' OR celulares.modelo LIKE '%$busqueda%' OR marcas.nombre LIKE '%$busqueda%' LIMIT 5 OFFSET $offset");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
 }
