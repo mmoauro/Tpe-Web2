@@ -32,6 +32,8 @@
     $r->addRoute("celular/add", "POST", "CelularController", "addCelular");
     $r->addRoute("celular/edit/:ID", "POST", "CelularController", "editCelular");
     $r->addRoute("celular/remove/:ID", "GET", "CelularController", "removeCelular");
+    $r->addRoute("celular/removeimg/:ID", "GET", "CelularController", "removeImg");
+
 
     $r->addRoute("marca/add", "POST", "MarcaController", "addMarca");
     $r->addRoute("marca/edit/:ID", "POST", "MarcaController", "editMarca");

@@ -20,9 +20,9 @@ class CelularModel{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-    function addCelular($modelo, $marca, $especificaciones){
-        $query = $this->db->prepare("INSERT INTO celulares(modelo, id_marca, especificaciones) VALUES (?,?,?)");
-        $query->execute(array($modelo, $marca, $especificaciones));
+    function addCelular($modelo, $marca, $especificaciones, $img){
+        $query = $this->db->prepare("INSERT INTO celulares(modelo, id_marca, especificaciones, imagen) VALUES (?,?,?,?)");
+        $query->execute(array($modelo, $marca, $especificaciones, $img));
     }
 
     function removeCelular($id){
@@ -30,14 +30,19 @@ class CelularModel{
         $query->execute(array($id));
     }
 
-    function editCelular($modelo, $especificaciones, $id){
-        $query = $this->db->prepare("UPDATE celulares SET modelo = ?, especificaciones = ? WHERE id = ?");
-        $query->execute(array($modelo, $especificaciones, $id));
+    function editCelular($modelo, $especificaciones, $img, $id){
+        $query = $this->db->prepare("UPDATE celulares SET modelo = ?, especificaciones = ?, imagen = ? WHERE id = ?");
+        $query->execute(array($modelo, $especificaciones, $img, $id));
     }
 
     function celularLike($busqueda, $offset){
         $query = $this->db->prepare("SELECT marcas.nombre AS marca, celulares.* FROM celulares JOIN marcas ON celulares.id_marca = marcas.id WHERE celulares.especificaciones LIKE '%$busqueda%' OR celulares.modelo LIKE '%$busqueda%' OR marcas.nombre LIKE '%$busqueda%' LIMIT 5 OFFSET $offset");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    function removeImg ($id) {
+        $query = $this->db->prepare("UPDATE celulares SET imagen = NULL WHERE id = ?");
+        $query->execute(array($id));
     }
 }

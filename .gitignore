@@ -1,2 +1,5 @@
 .idea/
 templates_c/*.php
+app/Images/*.png
+app/Images/*.jpg
+app/Images/*.jpeg
