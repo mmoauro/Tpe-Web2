@@ -36,8 +36,8 @@ class CelularModel{
     }
 
     function celularLike($busqueda, $offset){
-        $query = $this->db->prepare("SELECT marcas.nombre AS marca, celulares.* FROM celulares JOIN marcas ON celulares.id_marca = marcas.id WHERE celulares.especificaciones LIKE '%$busqueda%' OR celulares.modelo LIKE '%$busqueda%' OR marcas.nombre LIKE '%$busqueda%' LIMIT 5 OFFSET $offset");
-        $query->execute();
+        $query = $this->db->prepare("SELECT marcas.nombre AS marca, celulares.* FROM celulares JOIN marcas ON celulares.id_marca = marcas.id WHERE celulares.especificaciones LIKE CONCAT('%',?,'%') OR celulares.modelo LIKE CONCAT('%',?,'%') OR marcas.nombre LIKE CONCAT('%',?,'%') LIMIT 5 OFFSET $offset");
+        $query->execute(array($busqueda, $busqueda, $busqueda));
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
