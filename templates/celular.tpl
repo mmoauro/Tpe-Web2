@@ -11,7 +11,12 @@
             <li class="list-group-item">Marca: <a href="marcas/{$celular->id_marca}">{$celular->marca}</a></li>
             <li class="list-group-item">Especificaciones: {$celular->especificaciones}</li>
             {if $celular->imagen neq null}
-                <li class="list-group-item"><a href="{$celular->imagen}"><img width="300px" height="300px" src="{$celular->imagen}" alt="{$celular->modelo}"></a><a class="btn btn-danger" href="celular/removeimg/{$celular->id}"><i class="far fa-trash-alt "></i></a></li>
+                <li class="list-group-item">
+                    <a href="{$celular->imagen}"><img width="300px" height="300px" src="{$celular->imagen}" alt="{$celular->modelo}"></a>
+                    {if $status eq 1}
+                        <a class="btn btn-danger" href="celular/removeimg/{$celular->id}"><i class="far fa-trash-alt "></i></a>
+                    {/if}
+                </li>
             {/if}
             {if $status eq 1}
                 <li class="list-group-item"><a class="btn btn-danger" href="celular/remove/{$celular->id}"><i class="far fa-trash-alt "></i></a></li>

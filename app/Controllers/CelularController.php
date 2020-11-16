@@ -13,7 +13,6 @@ class CelularController {
         $this->model = new CelularModel();
         $this->auth = new AuthHelper();
         $status = $this->auth->getUserStatus();
-        // logged y admin se puede simplificar en un entero: -1 si no esta logueado, 0 si esta logueado, y 1 si es admin.
         $this->view= new CelularView($status);
     }
 

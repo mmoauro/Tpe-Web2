@@ -79,6 +79,12 @@ class UserController{
     function showUsers () {
         if ($this->auth->getUserStatus() == 1) {
             $users = $this->model->getUsers();
+            foreach ($users as $key => $user) {
+                if ($user->id == $this->auth->getUserId()) {
+                    unset($users[$key]);
+                    break;
+                }
+            }
             $this->view->showUsers($users);
         }
         else
