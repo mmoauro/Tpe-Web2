@@ -24,7 +24,8 @@ class CelularController {
         $marcas = $this->getMarcas();
         $celulares = $this->model->getCelulares($offset * 5);
         $max = count($celulares) < 5; // Variable para saber si pongo el link de siguiente pagina
-        $this->view->showHome($celulares, $marcas, $offset, $max);
+        $totalCelulares = (int) $this->model->getCountCelulares()->total;
+        $this->view->showHome($celulares, $marcas, $offset, $max, $totalCelulares);
     }
 
     function addCelular(){

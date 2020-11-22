@@ -26,6 +26,18 @@ class CelularModel{
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
+    function getCountCelulares () {
+        $query = $this->db->prepare("SELECT COUNT(id) AS total FROM celulares");
+        $query->execute();
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    function getCountCelularesMarca ($id) {
+        $query = $this->db->prepare("SELECT COUNT(id) AS total FROM celulares WHERE id_marca = ?");
+        $query->execute(array($id));
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     function addCelular($modelo, $marca, $especificaciones, $img){
         $query = $this->db->prepare("INSERT INTO celulares(modelo, id_marca, especificaciones, imagen) VALUES (?,?,?,?)");
         $query->execute(array($modelo, $marca, $especificaciones, $img));

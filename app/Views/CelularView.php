@@ -10,12 +10,13 @@ class CelularView {
         $this->smarty->assign('status', $status);
     }
 
-    function showHome ($celulares, $marcas, $offset, $max) {
+    function showHome ($celulares, $marcas, $offset, $max, $totalCelulares) {
         $this->smarty->assign('celulares', $celulares);
         $this->smarty->assign('marcas', $marcas);
         $this->smarty->assign('offset', $offset);
         $this->smarty->assign('max', $max);
         $this->smarty->assign('url', "celulares");
+        $this->smarty->assign('totalCelulares', $totalCelulares);
         $this->smarty->display('templates/home.tpl');
     }
 

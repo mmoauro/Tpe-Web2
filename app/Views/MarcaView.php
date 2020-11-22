@@ -16,13 +16,14 @@ class MarcaView {
         $this->smarty->display('templates/marcas.tpl');
     }
 
-    function showCelularesMarca ($celulares, $nombreMarca, $idMarca, $offset, $max) {
+    function showCelularesMarca ($celulares, $nombreMarca, $idMarca, $offset, $max, $totalCelulares) {
         // Es lo mismo que el showHome. Solo que vienen todos los celulares de la misma marca
         $this->smarty->assign('celulares', $celulares);
         $this->smarty->assign('nombreMarca', $nombreMarca);
         $this->smarty->assign('idMarca', $idMarca);
         $this->smarty->assign('offset', $offset);
         $this->smarty->assign('max', $max);
+        $this->smarty->assign('totalCelulares', $totalCelulares);
         $this->smarty->assign('url', "marcas/$idMarca");
         $this->smarty->display('templates/celularesMarca.tpl');
     }

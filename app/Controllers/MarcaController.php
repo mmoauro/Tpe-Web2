@@ -27,9 +27,10 @@ class MarcaController {
             $offset = $params[':OFFSET'];
         $celularModel = new CelularModel();
         $celulares = $celularModel->getCelularesMarca($id, $offset * 5);
+        $totalCelulares = (int) $celularModel->getCountCelularesMarca($id)->total;
         $nombreMarca = $this->model->getNombreMarca($id);
         $max = count($celulares) < 5;
-        $this->view->showCelularesMarca($celulares, $nombreMarca, $id, $offset, $max);
+        $this->view->showCelularesMarca($celulares, $nombreMarca, $id, $offset, $max, $totalCelulares);
     }
 
     function addMarca () {
