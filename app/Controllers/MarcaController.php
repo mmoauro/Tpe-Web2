@@ -1,6 +1,7 @@
 <?php
-require_once ('app//Models/MarcaModel.php');
-require_once ('app//Views/MarcaView.php');
+require_once ('app/Models/MarcaModel.php');
+require_once ('app/Views/MarcaView.php');
+require_once ('app/Models/CelularModel.php');
 
 class MarcaController {
     private $model;
@@ -24,7 +25,8 @@ class MarcaController {
         $offset = 0;
         if (isset($params[':OFFSET']) && is_numeric($params[':OFFSET']))
             $offset = $params[':OFFSET'];
-        $celulares = $this->model->getCelularesMarca($id, $offset * 5);
+        $celularModel = new CelularModel();
+        $celulares = $celularModel->getCelularesMarca($id, $offset * 5);
         $nombreMarca = $this->model->getNombreMarca($id);
         $max = count($celulares) < 5;
         $this->view->showCelularesMarca($celulares, $nombreMarca, $id, $offset, $max);

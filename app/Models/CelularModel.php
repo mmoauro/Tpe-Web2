@@ -20,6 +20,12 @@ class CelularModel{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    function getCelularesMarca($id, $offset){
+        $query = $this->db->prepare("SELECT marcas.nombre AS marca, celulares.* FROM celulares JOIN marcas ON celulares.id_marca = marcas.id WHERE id_marca = ? LIMIT 5 OFFSET $offset");
+        $query->execute(array($id));
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
     function addCelular($modelo, $marca, $especificaciones, $img){
         $query = $this->db->prepare("INSERT INTO celulares(modelo, id_marca, especificaciones, imagen) VALUES (?,?,?,?)");
         $query->execute(array($modelo, $marca, $especificaciones, $img));
