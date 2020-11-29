@@ -89,7 +89,8 @@ class CelularController {
             $celulares= $this->model->celularLike($busqueda, $offset * 5);
             $marcas = $this->getMarcas();
             $max = count($celulares) < 5;
-            $this->view->showHome($celulares, $marcas, $offset, $max);
+            $totalCelulares = (int) $this->model->getCountCelulares()->total;
+            $this->view->showHome($celulares, $marcas, $offset, $max, $totalCelulares);
         }
     }
 

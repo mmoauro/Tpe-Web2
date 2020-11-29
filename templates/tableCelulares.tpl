@@ -25,12 +25,18 @@
 <div class="container">
     {if $offset gt 0}
         <a href="{$base_url}{$url}/{$offset - 1}">Anterior</a>
+    {else}
+    <a>Anterior</a>
     {/if}
     {for $i = 1 to $totalCelulares / 5}
         <a href="{$base_url}{$url}/{$i - 1}" >{$i}</a>
     {/for}
     {if $max neq true}
         <a href="{$base_url}{$url}/{$offset + 1}">Siguiente</a>
+    {else}
+        <a>Siguiente</a>    
     {/if}
+
+    <p>Total de items:{$totalCelulares}</p>
 
 </div>
