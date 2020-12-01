@@ -5,7 +5,7 @@
 <body>
     {include file="navbar.tpl"}
 
-    <form action="{$base_url}celulareslike/{$offset}" method="GET" class="container">
+    <form action="{$base_url}celulareslike/0" method="GET" class="container">
         <div class="form-group">
             <input type="text" name="query" class="form-control" placeholder="Ej: Xiaomi">
         </div>

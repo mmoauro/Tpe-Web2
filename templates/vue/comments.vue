@@ -20,7 +20,7 @@
     <ul>
         <li v-for="(comment, index) in comments" class="list-group-item"> 
             {{comment.email}}:  <i class="fas fa-star"></i>{{ comment.puntuacion }} - {{ comment.comentario}}
-            <button v-if="status == 1" :value="comment.id" v-on:click="deleteComment(comment.id, index)">Eliminar</button>
+            <button v-if="status == 1" v-on:click="deleteComment(comment.id, index)">Eliminar</button>
         </li>
     </ul>
 </div>
