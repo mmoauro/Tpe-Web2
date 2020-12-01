@@ -8,7 +8,7 @@
     <div class="container">
         <h3>Celular: {$celular->modelo}</h3>
         <ul class="list-group">
-            <li class="list-group-item">Marca: <a href="marcas/{$celular->id_marca}">{$celular->marca}</a></li>
+            <li class="list-group-item">Marca: <a href="marcas/{$celular->id_marca}/0">{$celular->marca}</a></li>
             <li class="list-group-item">Especificaciones: {$celular->especificaciones}</li>
             {if $celular->imagen neq null}
                 <li class="list-group-item">
