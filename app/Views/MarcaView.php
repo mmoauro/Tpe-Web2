@@ -25,6 +25,7 @@ class MarcaView {
         $this->smarty->assign('max', $max);
         $this->smarty->assign('totalCelulares', $totalCelulares);
         $this->smarty->assign('url', "marcas/$idMarca");
+        $this->smarty->assign('query', null);
         $this->smarty->display('templates/celularesMarca.tpl');
     }
 

@@ -5,9 +5,9 @@
 <body>
     {include file="navbar.tpl"}
 
-    <form action="{$base_url}celulares/{$offset}" method="POST" class="container">
+    <form action="{$base_url}celulareslike/{$offset}" method="GET" class="container">
         <div class="form-group">
-            <input type="text" name="busqueda_input" class="form-control" placeholder="Ej: Xiaomi">
+            <input type="text" name="query" class="form-control" placeholder="Ej: Xiaomi">
         </div>
         <button class="btn btn-primary">Buscar</button>
     </form>

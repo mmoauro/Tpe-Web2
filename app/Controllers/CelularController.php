@@ -79,18 +79,18 @@ class CelularController {
     }
 
     function showCelularesLike($params = null){
-        if(isset($_POST["busqueda_input"])){
+        if(isset($_GET["query"])){
             $offset = 0;
             if (isset($params[':OFFSET']) && is_numeric($params[':OFFSET']))
                 $offset = $params[':OFFSET'];
 
-            $busqueda = $_POST["busqueda_input"]; // Input del filtrado.
+            $busqueda = $_GET["query"]; // Input del filtrado.
 
             $celulares= $this->model->celularLike($busqueda, $offset * 5);
             $marcas = $this->getMarcas();
             $max = count($celulares) < 5;
-            $totalCelulares = (int) $this->model->getCountCelulares()->total;
-            $this->view->showHome($celulares, $marcas, $offset, $max, $totalCelulares);
+            $totalCelulares = (int) $this->model->getCountCelularesLike($busqueda)->total;
+            $this->view->showHome($celulares, $marcas, $offset, $max, $totalCelulares, $busqueda, 'celulareslike');
         }
     }
 
@@ -110,6 +110,3 @@ class CelularController {
         return $img;
     }
 }
-
-
-?>

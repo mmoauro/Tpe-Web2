@@ -5,7 +5,8 @@ class CelularModel{
     private $db;
 
     public function __construct(){
-        $this->db= new PDO('mysql:host=localhost;'.'dbname=db_celulares;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_celulares;charset=utf8', 'root', '');
+        // No traigo el COUNT desde las query de getCelulares porque tiene limite.
     }
         
     function getCelulares($offset) {
@@ -35,6 +36,12 @@ class CelularModel{
     function getCountCelularesMarca ($id) {
         $query = $this->db->prepare("SELECT COUNT(id) AS total FROM celulares WHERE id_marca = ?");
         $query->execute(array($id));
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    function getCountCelularesLike ($q) {
+        $query = $this->db->prepare("SELECT COUNT(celulares.id) AS total FROM celulares JOIN marcas ON celulares.id_marca = marcas.id WHERE celulares.especificaciones LIKE CONCAT('%',?,'%') OR celulares.modelo LIKE CONCAT('%',?,'%') OR marcas.nombre LIKE CONCAT('%',?,'%')");
+        $query->execute(array($q, $q, $q));
         return $query->fetch(PDO::FETCH_OBJ);
     }
 

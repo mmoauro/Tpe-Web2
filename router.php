@@ -21,7 +21,7 @@
     $r->setDefaultRoute("CelularController", "showHome");
     $r->addRoute("celulares/:OFFSET", "GET", "CelularController", "showHome");
     $r->addRoute("celular/:ID", "GET", "CelularController", "showCelularEspecifico");
-    $r->addRoute("celulares/:OFFSET", "POST", "CelularController", "showCelularesLike");
+    $r->addRoute("celulareslike/:OFFSET", "GET", "CelularController", "showCelularesLike");
 
     // Mostras todas las marcas, y los celulares de una marca
     $r->addRoute("marcas", "GET", "MarcaController", "showMarcas");
@@ -43,5 +43,4 @@
     $r->addRoute("user/remove/:ID", "GET", "UserController", "removeUser");
     $r->addRoute("user/edit/:ID", "POST", "UserController", "editUser");
 
-    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
-?>
+    $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);

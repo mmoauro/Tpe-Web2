@@ -23,20 +23,21 @@
     </tbody>
 </table>
 <div class="container">
+    <!-- Si vino la query la paso por la url -->
     {if $offset gt 0}
-        <a href="{$base_url}{$url}/{$offset - 1}">Anterior</a>
+        <a href="{$base_url}{$url}/{$offset - 1}{if $query neq null}?query={$query}{/if}">Anterior</a>
     {else}
     <a>Anterior</a>
     {/if}
     {for $i = 1 to $totalCelulares / 5}
-        <a href="{$base_url}{$url}/{$i - 1}" >{$i}</a>
+        <a href="{$base_url}{$url}/{$i - 1}{if $query neq null}?query={$query}{/if}" >{$i}</a>
     {/for}
     {if $max neq true}
-        <a href="{$base_url}{$url}/{$offset + 1}">Siguiente</a>
+        <a href="{$base_url}{$url}/{$offset + 1}{if $query neq null}?query={$query}{/if}">Siguiente</a>
     {else}
         <a>Siguiente</a>    
     {/if}
 
-    <p>Total de items:{$totalCelulares}</p>
+    <p>Total de items: {$totalCelulares}</p>
 
 </div>
