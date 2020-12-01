@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(`api/comentarios/${id}`,{
             method: 'DELETE'
         })
-            .then(() => app.comments.splice(index - 1, 1));
+            .then(() => app.comments.splice(index, 1));
     }
 
     getComments();
