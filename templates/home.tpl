@@ -7,7 +7,7 @@
 
     <form action="{$base_url}celulareslike/0" method="GET" class="container">
         <div class="form-group">
-            <input type="text" name="query" class="form-control" placeholder="Ej: Xiaomi">
+            <input type="text" name="query" class="form-control" placeholder="Ej: Xiaomi" required>
         </div>
         <button class="btn btn-primary">Buscar</button>
     </form>
